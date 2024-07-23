@@ -1,0 +1,90 @@
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  max-width: 100%; /* Set the maximum width to be 100% of the parent container */
+  overflow: hidden; 
+ 
+}
+.slider_items {
+  /* background-color:aliceblue; */
+  background: linear-gradient(to right, #87CEEB, #f0f8ff); 
+  width: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ height:350px
+
+  
+}
+.edu-exp-list{
+  display: flex;
+  justify-content: center; /* Center the content horizontally */
+  align-items: center; /* Center the content vertically */
+  flex-direction: column; /* Arrange content vertically */
+  border-radius: 50px;
+  /* background-color: aliceblue; */
+  padding-top: 10px;
+  padding-bottom: 10px;
+  
+}
+.secondry_img,.school_img,.college_img{
+  width: 100px;
+
+}
+/* .secondry_container,.college_img{
+
+
+} */
+.edu-exp-list h3,.college_container h3{
+  font-family: "Montserrat", sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  margin-top: 10px;
+  text-align: center;
+  
+}
+.qualifications h3{
+  font-family: "Montserrat", sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  margin-top: 10px;
+  text-align: left;
+  
+}
+.my_skills h2,.qualifications h2,.education h2{ 
+  padding: 10px;
+  text-align: center;
+  color: royalblue;
+  font-weight: 700;
+}
+.my_skills p,.qualifications p{ 
+  font-size: 15px;
+  font-family: "Montserrat", sans-serif;
+  text-align: left;
+}
+.education p{ 
+  font-size: 15px;
+  font-family: "Montserrat", sans-serif;
+  text-align: center;
+}
+@media screen and (max-width: 576px) {
+  .slider_items{
+     height: 450px;
+   
+  }
+}
+  
+  
+
+
+
+  
+
+
+
+
+

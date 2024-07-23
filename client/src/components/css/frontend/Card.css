@@ -1,0 +1,27 @@
+.card {
+    border: none;
+    border-radius: 10px;
+    background-color:aliceblue;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+    
+  }
+  
+  .card-header {
+    background-color: aliceblue;
+    /* border: none; */
+    padding: 5px;
+    border-radius: 5px;
+  }
+  
+  .card-header h3 {
+    margin: 0;
+    font-size: 14px;
+    color: black;
+  }
+  
+  .card-body p {
+    margin: 0;
+    font-size: 12px;
+    color: #555;
+  }
+  

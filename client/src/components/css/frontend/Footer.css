@@ -1,0 +1,33 @@
+/* .footer-area{
+    display: flex;
+    justify-content: center;
+    background-color: blue;
+    height: 100%;
+
+}
+.copyright{
+    
+} */
+.footer {
+    background-color: blue;
+}
+.footer-top {
+    background: none;
+    padding: 90px 0 60px;
+}
+.footer .copyright {
+    font-size: 14px;
+    padding-left: 60px;
+ 
+}
+.footer-site-link{
+    color: white;
+}
+.footer p {
+    color: white;
+    margin: 0 0 20px;
+}
+.social{
+ color: white;
+ padding-inline-end: 10px;
+}

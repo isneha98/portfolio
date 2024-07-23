@@ -1,0 +1,100 @@
+// import React from "react";
+// import LogoutButton from './LogoutButton';
+// import Navbar from './Navbar';
+// const Dashboard = () => {
+//     const menuItems = [
+//         { label: 'Home', url: '#' },
+//         { label: 'About', url: '#' },
+//         { label: 'Services', url: '#' },
+//         { label: 'Contact', url: '#' },
+//         { label: 'Logout', component: <LogoutButton />, isButton: true },
+//       ];
+//     return(
+//         <div>
+//              <Navbar menuItems={menuItems} />
+//          hello
+//         </div>
+//     )
+// }
+// export default Dashboard;
+
+import React from "react";
+import Sidebar from './Sidebar';
+import Navbar from './Navbar';
+import Widgets from './Widgets';
+import Featured from './Featured';
+import Charts from './Charts';
+import BasicTable from './Table';
+import './css/Dashboard.css';
+// import Dashboard from "@mui/icons-material/Dashboard";
+
+const Dashboard = () => {
+    return(
+        <div className="dashboard">
+           {/* <ul>
+            <li>login</li>
+      
+           </ul> */}
+           <Sidebar />
+       
+           <div className="dashboardContainer">
+             <Navbar />
+              home Container
+              <div className="widgets">
+                    <Widgets type="Users"/>
+                    <Widgets type="Orders"/>
+                    <Widgets type="Earnings"/>
+                    <Widgets type="Balance"/>
+              </div>
+              <div className="charts">
+                 <Featured />
+                 <Charts />
+              </div>
+              <div className="listContainer">
+                <div className="listTitle">
+                    Latest Transaction
+                </div>
+                <BasicTable />
+              </div>
+            </div>
+           
+        </div>
+    )
+}
+export default Dashboard;
+
+
+
+// <div>
+    //   <div className="header-container">
+    //     <div className='container-wrapper'>
+    //      <Container>
+    //         <Row className="roww">
+    //           <Col xs={12} sm={12} md={6} lg={6}> 
+    //             <div className="text-section">
+    //               <h2 className="slide-in-heading">Hello I'm Sneha pareek</h2>
+    //               <h3 className="slide-in-heading">Working As A Web Developer</h3>
+    //               <p>Passionate web developer with 2+ years of experience creating visually appealing and user-friendly websites. 
+    //                 Skilled in front-end and back-end development, using technologies such as HTML, CSS, JavaScript, and frameworks like Bootstrap and React. 
+    //                 Experienced in collaborating with designers, project managers, and clients to deliver modern, responsive, and high-performance websites.
+    //               </p>
+    //               <div className='text-section-btn'>
+    //                 <Button variant="primary" className='learn-more'>Learn More</Button>
+    //                 <Button variant="info"  className="hire-me">Hire Me</Button>
+    //               </div>
+    //             </div>
+    //           </Col>
+    //           <Col xs={12} sm={12} md={6} lg={6}> 
+    //             {/* <Container className="img-container"> */}
+    //               <div className="img-section">
+    //                 <Image src={intro1}  className="intro-image" />
+    //               </div>
+    //             {/* </Container> */}
+    //           </Col>
+    //         </Row>
+    //      </Container>
+    //     </div>
+    //   </div>
+    // </div>
+    //registrationForm
+   

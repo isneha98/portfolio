@@ -1,0 +1,130 @@
+import React, { useState } from 'react';
+import { Container ,Row ,Col,Image,Button,Form} from 'react-bootstrap';
+import contactme from "../image/contactme.png";
+import '../css/frontend/Contact.css';
+import Card from './Card';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { BASE_URL } from '../config';
+const ContactForm = () => {
+  const contactUrl = `${BASE_URL}/api/submit`;
+  const [formData, setFormData] = useState({
+    name: '',
+    email:'',
+    message: '',
+   
+  });
+
+  const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  const navigate = useNavigate();
+  
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
+  };
+
+  // const validateForm = () => {
+  //   let validationErrors = {};
+
+  //   if (!name) {
+  //     validationErrors.name = 'Name is required';
+  //   }
+
+  //   if (!email) {
+  //     validationErrors.email = 'Email is required';
+  //   } else if (!isValidEmail(email)) {
+  //     validationErrors.email = 'Invalid email';
+  //   }
+
+  //   if (!message) {
+  //     validationErrors.message = 'Message is required';
+  //   }
+
+  //   setErrors(validationErrors);
+
+  //   return Object.keys(validationErrors).length === 0;
+  // };
+
+  const isValidEmail = (email) => {
+    // Email validation logic (regex, API call, etc.)
+    return true;
+  };
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+
+  //   if (validateForm()) {
+  //     // Form submission logic
+  //     console.log('Form submitted:', { name, email, message });
+  //   }
+  // };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!formData.name || !formData.email || !formData.message ) {
+      setErrorMessage('Please fill in all the fields.');
+      setSuccessMessage('');
+      return;
+    }
+
+    try {
+      const response = await axios.post(contactUrl, formData);
+      // console.log(response.data);
+      setSuccessMessage('Thanks For Contacting Us.Your Query Submitted Successfully');
+      setErrorMessage('');
+      // navigate('/login');
+    } catch (error) {
+      // console.error(error);
+      setSuccessMessage('');
+      setErrorMessage('An error occurred during submission.');
+    }
+  };
+
+  return (
+  <section id="contact" className='contact_section'>
+    <Container>
+    <div className="contact_container">
+      <div className='contact_header'>
+        <h2 className='contact_title'>Contact Me</h2>
+      </div>
+      <div className='contact_lines'>
+        <p>I value your feedback and input. Feel free to drop me a message using the contact details listed here.</p>
+      </div>
+
+      <Row>
+       
+        <Col xs={12} sm={12} md={6} lg={6}>
+          <Form onSubmit={handleSubmit}>
+           <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label>Name</Form.Label>
+              {/* <Form.Control type="name" placeholder="Write Your Name" value={name} onChange={(e) => setName(e.target.value)}/> */}
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label>Email address</Form.Label>
+              <Form.Control type="email" placeholder="name@example.com" />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+              <Form.Label>Message</Form.Label>
+              <Form.Control as="textarea" placeholder="Write Message......" rows={3} />
+            </Form.Group>
+            <Button type="submit">submit</Button>
+          </Form>
+          
+        </Col>
+        <Col xs={12} sm={12} md={6} lg={6}>
+          <div className="contactimg ">
+            <Image src={contactme}   className="contact_me img-fluid"/>
+          </div>
+        </Col>
+      </Row>
+    </div>
+    </Container>
+  
+   
+  </section>
+
+  );
+};
+
+export default ContactForm;

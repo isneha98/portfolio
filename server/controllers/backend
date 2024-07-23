@@ -1,0 +1,148 @@
+// Backend code (server.js)
+
+const express = require('express');
+const session = require('express-session');
+const bcrypt = require('bcrypt');
+const mongoose = require('mongoose');
+const cors = require('cors');
+const crypto = require('crypto');
+const contactFormRoutes = require('./routes/contactFormRoutes');
+
+const bodyParser = require('body-parser');
+
+
+
+const app=express();
+app.use(express.json());
+app.use(cors());
+
+app.use(bodyParser.json());
+// Generate a random secret key
+const generateSecretKey = (length = 32) => {
+  return crypto.randomBytes(length).toString('hex');
+};
+const secretKey = generateSecretKey();
+const db = 'portfolio';
+app.use(
+  session({
+    secret: secretKey,
+    resave: false,
+    saveUninitialized: false,
+  })
+);
+
+// Connect to MongoDB
+mongoose.connect('mongodb://localhost:27017/' + db, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+
+
+
+
+// Use routes
+// app.use('/api', routes);
+// Define user schema
+const userSchema = new mongoose.Schema({
+  username: String,
+  password: String,
+  email:String,
+  confirmPassword: String,
+});
+
+const User = mongoose.model('users', userSchema);
+app.post('/api/register', async (req, res) => {
+  const { username, password,email,confirmPassword } = req.body;
+
+  // Check if the email address is already in use
+  const existingUser = await User.findOne({ email: email });
+  if (existingUser) {
+    return res.status(400).send('Email address already in use');
+  }
+
+  // Check if the passwords match
+  if (password !== confirmPassword) {
+    return res.status(400).send('Passwords do not match');
+  }
+
+  // Hash the password
+  // const hashedPassword = await bcrypt.hash(password, 10);
+  const salt = Math.random().toString(36).substring(2, 10);
+  const hashedPassword = bcrypt.hash(password, salt);
+  // Create a new user
+  const user = new User({ username, password: hashedPassword,email,confirmPassword });
+
+  try {
+    // Save the user to the database
+    await user.save();
+    res.status(201).send({ message: 'User registered successfully' });
+  } catch (error) {
+    res.status(500).send({ error: error.message });
+  }
+});
+// Registration route
+// app.post('/api/register', async (req, res) => {
+//   const { username, password,email,confirmPassword } = req.body;
+
+//   // Hash the password
+//   const hashedPassword = await bcrypt.hash(password, 10);
+
+//   // Create a new user
+//   const user = new User({ username, password: hashedPassword,email,confirmPassword });
+
+//   try {
+//     // Save the user to the database
+//     await user.save();
+//     res.status(201).send({ message: 'User registered successfully' });
+//     console.log("hello");
+//   } catch (error) {
+//     res.status(500).send({ error: 'An error occurred while registering' });
+//   }
+// });
+
+// Login route
+app.post('/api/login', async (req, res) => {
+  const { username, password } = req.body;
+
+  try {
+    // Find the user by username
+    const user = await User.findOne({ username });
+  
+    // Check if the user exists and verify the password
+    if (user && await bcrypt.compare(password, user.password)) {
+      // Store user information in the session
+      req.session.user = user;
+      res.send({ message: 'Login successful' });
+    } else {
+      res.status(401).send({ error: 'Invalid credentials' });
+    }
+  } catch (error) {
+    res.status(500).send({ error: 'An error occurred while logging in' });
+  }
+});
+
+
+// Get all admins
+app.get('/getList', async (req, res) => {
+  const users = await users.find();
+   console.log(users);
+  res.json(users);
+
+  // response.json()
+
+})
+
+// Logout route
+app.post('/api/logout', (req, res) => {
+  // Destroy the session and clear the session cookie
+  req.session.destroy();
+  res.send({ message: 'Logout successful' });
+});
+// Use contactFormRoutes for form submissions
+app.use('/api', contactFormRoutes);
+
+
+// Start the server
+app.listen(5000, () => {
+  console.log('Server listening on port 5000');
+});
