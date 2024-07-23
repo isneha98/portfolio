@@ -24,7 +24,7 @@ const About = () => {
               <Col xs={12} sm={12} md={12} lg={6}>
                 <div className="about_data">
                   <p>
-                    <i>I am a skilled full-stack web developer with 2+ years of experience. 
+                    <i>I am a skilled full-stack web developer with 3+ years of experience. 
                     I specialize in creating intuitive user interfaces and robust server-side architectures. 
                     With expertise in front-end technologies like HTML, CSS, JavaScript, and frameworks such as React, as well as back-end technologies like Node.js and Php, I seamlessly integrate all layers of a web application. I thrive in collaborative environments and stay up-to-date with the latest industry trends.
                     </i><br />

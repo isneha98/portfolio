@@ -14,7 +14,7 @@ const Banner = () => {
                 <div className="text-section">
                   <h2 className="slide-in-heading">Hello I'm Sneha pareek</h2>
                   <h3 className="slide-in-heading">Working As A Web Developer</h3>
-                  <p>Passionate web developer with 2+ years of experience creating visually appealing and user-friendly websites. 
+                  <p>Passionate web developer with 3+ years of experience creating visually appealing and user-friendly websites. 
                     Skilled in front-end and back-end development, using technologies such as HTML, CSS, JavaScript, and frameworks like Bootstrap and React. 
                     Experienced in collaborating with designers, project managers, and clients to deliver modern, responsive, and high-performance websites.
                   </p>
